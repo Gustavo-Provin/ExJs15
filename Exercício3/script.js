@@ -1,0 +1,72 @@
+// Crie um cadastro de pessoas onde o usuário informe o nome, idade
+// e se está trabalhando ou não, se a pessoa estiver trabalhando
+// pergunte para ele o salário que está ganhando. Para cada pessoa
+// cadastrada, pergunte ao usuário se ele deseja continuar
+// cadastrando ou não. No final, mostre as pessoas que estão
+// desempregadas, as pessoas que estão empregadas separadas
+// pelas que ganham mais que 2500 e menos que 2500.
+// Exemplo de resultado:
+// Pessoas desempregadas:
+// Nome: Alessandro, Idade: 28
+// Nome: Alessandro, Idade: 28
+// Pessoas empregadas com salários menores que 2500:
+// Nome: Alessandro, Idade: 28, Salário: 1500
+// Nome: Alessandro, Idade: 28, Salário: 2400
+// Pessoas empregadas com salários maiores que 2500:
+// Nome: Alessandro, Idade: 28, Salário: 2700
+// Nome: Alessandro, Idade: 28, Salário: 3000
+
+const pessoas = []
+let continuar = true
+
+while (continuar) {
+const pessoa = {
+nome: prompt('Insira o nome da pessoa'),
+idade: parseInt(prompt("Informe a idade da pessoa:")),
+trabalhando: confirm("A pessoa está trabalhando?"),
+salario: 0,
+}
+
+if (pessoa.trabalhando) {
+pessoa.salario = parseFloat(prompt('Informe o salário da pessoa'))
+} 
+
+pessoas.push(pessoa)
+
+continuar = confirm('Deseja continuar cadastrando?')
+}
+
+const desempregadas = []
+const empregadasMais2500 = []
+const empregadasMenos2500 = []
+
+for (const pessoa of pessoas) {
+if (!pessoa.trabalhando) {
+    desempregadas.push(pessoa)
+} else {
+    if (pessoa.salario > 2500) {
+        empregadasMais2500.push(pessoa)
+    } else {
+        empregadasMenos2500.push(pessoa)
+    }
+}
+}
+
+document.write("Pessoas desempregadas:")
+for (const pessoa of desempregadas) {
+document.write(`Nome: ${pessoa.nome}, Idade: ${pessoa.idade}, Salário: ${pessoa.salario}`)
+}
+
+document.write('</br></br>')
+
+document.write("Pessoas empregadas com salário maior que 2500:")
+for (const pessoa of empregadasMais2500) {
+document.write(`Nome: ${pessoa.nome}, Idade: ${pessoa.idade}, Salário: ${pessoa.salario}`)
+}
+
+document.write('</br></br>')
+
+document.write("Pessoas empregadas com salário igual ou menor que 2500:")
+for (const pessoa of empregadasMenos2500) {
+document.write(`Nome: ${pessoa.nome}, Idade: ${pessoa.idade}, Salário: ${pessoa.salario}`)
+}
